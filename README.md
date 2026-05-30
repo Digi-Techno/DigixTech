@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -1806,6 +1807,71 @@ main, header, footer, section { max-width: 100%; }
     .glass-panel:hover, .liquid-glass:hover, .lq:hover { transform: none; }
 }
 
+/* ════════════════════════════════════════════════════════════
+   ✦ COMPARATIVA DE DIAGNÓSTICO — PC antiguo vs Setup 2.0 ✦
+   ════════════════════════════════════════════════════════════ */
+.cmp-wrap { position: relative; border-radius: 22px; overflow: hidden; }
+.cmp-grid { display: grid; grid-template-columns: 1.05fr 1.55fr 1.6fr; }
+.cmp-head-cell {
+    padding: 16px 18px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 800;
+    display: flex; align-items: center; gap: 9px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.cmp-head-cat { color: #64748b; }
+.cmp-head-old { color: #fb7185; background: rgba(244,63,94,0.05); }
+.cmp-head-new { color: #34d399; background: rgba(16,185,129,0.07); }
+.cmp-cell {
+    padding: 15px 18px; border-bottom: 1px solid rgba(255,255,255,0.045);
+    display: flex; flex-direction: column; gap: 4px; justify-content: center;
+    font-size: 0.82rem; line-height: 1.45;
+}
+.cmp-cat {
+    flex-direction: row; align-items: center; gap: 9px;
+    font-weight: 700; color: #cbd5e1; background: rgba(255,255,255,0.012);
+}
+.cmp-cat i { width: 16px; height: 16px; color: var(--neon-primary); flex: 0 0 auto; }
+.cmp-old { color: #94a3b8; }
+.cmp-old.danger { color: #fb7185; font-weight: 700; }
+.cmp-new {
+    color: #ecfdf5; font-weight: 600;
+    background: linear-gradient(90deg, rgba(16,185,129,0.07), transparent 85%);
+    border-left: 2px solid rgba(16,185,129,0.4);
+}
+.cmp-new.win { color: #6ee7b7; font-weight: 800; }
+.cmp-badge {
+    align-self: flex-start; margin-top: 3px;
+    font-size: 0.6rem; font-weight: 800; letter-spacing: 0.04em;
+    padding: 2px 8px; border-radius: 999px;
+    background: rgba(16,185,129,0.14); color: #34d399; border: 1px solid rgba(16,185,129,0.3);
+    font-family: 'JetBrains Mono', monospace;
+}
+.cmp-grid > .cmp-cell:nth-last-child(-n+3) { border-bottom: none; }
+
+@media (max-width: 760px) {
+    .cmp-grid { grid-template-columns: 1fr; }
+    .cmp-head { display: none; }
+    .cmp-cat {
+        background: rgba(0,243,255,0.06);
+        font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em;
+        color: #67e8f9; border-bottom: none; padding: 11px 16px;
+    }
+    .cmp-old, .cmp-new { padding: 11px 16px; }
+    .cmp-old::before {
+        content: "💀 PC Antiguo"; display: block;
+        font-size: 0.58rem; color: #fb7185; font-family: 'JetBrains Mono', monospace;
+        letter-spacing: 0.06em; margin-bottom: 3px; text-transform: uppercase; font-weight: 700;
+    }
+    .cmp-new::before {
+        content: "🚀 Nuevo Setup 2.0"; display: block;
+        font-size: 0.58rem; color: #34d399; font-family: 'JetBrains Mono', monospace;
+        letter-spacing: 0.06em; margin-bottom: 3px; text-transform: uppercase; font-weight: 700;
+    }
+    .cmp-new { border-left: none; border-top: 1px solid rgba(16,185,129,0.18); }
+    .cmp-grid > .cmp-cell:nth-last-child(-n+3) { border-bottom: 1px solid rgba(255,255,255,0.045); }
+}
+
 </style>
 </head>
 <body class="p-4 md:p-8">
@@ -2516,51 +2582,55 @@ main, header, footer, section { max-width: 100%; }
                     </div>
                 </div>
 
-                <!-- Tabla Forense: PC Antiguo vs Setup 2.0 -->
+                <!-- Tabla Forense: PC Antiguo vs Setup 2.0 (rediseñada) -->
                 <div class="relative z-10 mb-8">
-                    <h3 class="text-lg font-bold text-white mb-4">Análisis Comparativo del Diagnóstico</h3>
-                    <div class="overflow-x-auto rounded-xl border border-slate-800 bg-[#060813]/90">
-                        <table class="w-full text-left text-xs border-collapse">
-                            <thead>
-                                <tr class="bg-slate-900/80 border-b border-slate-800">
-                                    <th class="p-3 text-slate-400 font-bold uppercase tracking-wider">Categoría</th>
-                                    <th class="p-3 text-red-400 font-bold uppercase tracking-wider">💀 Mi PC Antiguo (Medion)</th>
-                                    <th class="p-3 text-emerald-400 font-bold uppercase tracking-wider">🚀 Mi Nuevo Setup 2.0</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-slate-900">
-                                <tr>
-                                    <td class="p-3 font-semibold text-slate-300">Procesador</td>
-                                    <td class="p-3 text-slate-400">Intel Core i5-4570 @ 3.20 GHz (4 hilos, Haswell 2013)</td>
-                                    <td class="p-3 text-white font-semibold">Intel Core i3-12100F (8 hilos, Alder Lake 2022)</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-3 font-semibold text-slate-300">Rendimiento CPU</td>
-                                    <td class="p-3 text-red-300">~4.800 pts en Cinebench R23 (Sin HT)</td>
-                                    <td class="p-3 text-emerald-300 font-semibold">~12.000 pts (+150% de incremento)</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-3 font-semibold text-slate-300">Placa Base</td>
-                                    <td class="p-3 text-slate-400">H81H3-EM2 (Sin TPM 2.0 ni puertos M.2)</td>
-                                    <td class="p-3 text-white">MSI PRO H610M-E (Con TPM 2.0 y M.2 NVMe)</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-3 font-semibold text-slate-300">Soporte Windows 11</td>
-                                    <td class="p-3 text-red-400 font-bold">BLOQUEADO por Microsoft</td>
-                                    <td class="p-3 text-emerald-400 font-bold">100% COMPATIBLE Y HOMOLOGADO</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-3 font-semibold text-slate-300">Memoria RAM</td>
-                                    <td class="p-3 text-slate-400">16 GB DDR3 Single Channel (~12.8 GB/s)</td>
-                                    <td class="p-3 text-emerald-300">16 GB DDR4 Dual Channel 3200MHz (~51 GB/s)</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-3 font-semibold text-slate-300">Escalabilidad</td>
-                                    <td class="p-3 text-red-400/80">Plataforma descatalogada (LGA1150)</td>
-                                    <td class="p-3 text-emerald-300">Plataforma LGA1700 ampliable hasta i9-12900K</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="flex items-center gap-2.5 mb-4">
+                        <div class="w-9 h-9 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,var(--neon-primary),var(--neon-secondary));box-shadow:0 0 18px -4px var(--neon-primary);">
+                            <i data-lucide="git-compare-arrows" class="w-4 h-4 text-[#050a16]"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-white leading-tight">Análisis Comparativo del Diagnóstico</h3>
+                            <p class="text-[10px] text-slate-400 console-font uppercase tracking-widest">Antes vs Después · Migración de plataforma</p>
+                        </div>
+                    </div>
+
+                    <div class="cmp-wrap glass-panel liquid-glass">
+                        <div class="cmp-grid">
+                            <!-- Cabeceras -->
+                            <div class="cmp-head cmp-head-cell cmp-head-cat"><i data-lucide="list" class="w-3.5 h-3.5"></i> Categoría</div>
+                            <div class="cmp-head cmp-head-cell cmp-head-old">💀 Mi PC Antiguo (Medion)</div>
+                            <div class="cmp-head cmp-head-cell cmp-head-new">🚀 Mi Nuevo Setup 2.0</div>
+
+                            <!-- Procesador -->
+                            <div class="cmp-cell cmp-cat"><i data-lucide="cpu"></i> Procesador</div>
+                            <div class="cmp-cell cmp-old">Intel Core i5-4570 @ 3.20 GHz<br><span class="text-slate-500 text-[0.72rem]">4 hilos · Haswell 2013</span></div>
+                            <div class="cmp-cell cmp-new">Intel Core i3-12100F<br><span class="text-emerald-400/70 text-[0.72rem]">8 hilos · Alder Lake 2022</span></div>
+
+                            <!-- Rendimiento CPU -->
+                            <div class="cmp-cell cmp-cat"><i data-lucide="gauge"></i> Rendimiento CPU</div>
+                            <div class="cmp-cell cmp-old danger">~4.800 pts<br><span class="font-normal text-slate-500 text-[0.72rem]">Cinebench R23 (Sin HT)</span></div>
+                            <div class="cmp-cell cmp-new win">~12.000 pts<span class="cmp-badge">▲ +150%</span></div>
+
+                            <!-- Placa Base -->
+                            <div class="cmp-cell cmp-cat"><i data-lucide="circuit-board"></i> Placa Base</div>
+                            <div class="cmp-cell cmp-old">H81H3-EM2<br><span class="text-slate-500 text-[0.72rem]">Sin TPM 2.0 ni puertos M.2</span></div>
+                            <div class="cmp-cell cmp-new">MSI PRO H610M-E<br><span class="text-emerald-400/70 text-[0.72rem]">TPM 2.0 + M.2 NVMe</span></div>
+
+                            <!-- Soporte Windows 11 -->
+                            <div class="cmp-cell cmp-cat"><i data-lucide="shield-check"></i> Soporte Windows 11</div>
+                            <div class="cmp-cell cmp-old danger">⛔ BLOQUEADO por Microsoft</div>
+                            <div class="cmp-cell cmp-new win">✓ 100% COMPATIBLE Y HOMOLOGADO</div>
+
+                            <!-- Memoria RAM -->
+                            <div class="cmp-cell cmp-cat"><i data-lucide="memory-stick"></i> Memoria RAM</div>
+                            <div class="cmp-cell cmp-old">16 GB DDR3 Single Channel<br><span class="text-slate-500 text-[0.72rem]">~12.8 GB/s</span></div>
+                            <div class="cmp-cell cmp-new">16 GB DDR4 Dual 3200 MHz<br><span class="text-emerald-400/70 text-[0.72rem]">~51 GB/s</span><span class="cmp-badge">×4 ancho de banda</span></div>
+
+                            <!-- Escalabilidad -->
+                            <div class="cmp-cell cmp-cat"><i data-lucide="trending-up"></i> Escalabilidad</div>
+                            <div class="cmp-cell cmp-old danger">Plataforma descatalogada<br><span class="font-normal text-slate-500 text-[0.72rem]">Socket LGA1150</span></div>
+                            <div class="cmp-cell cmp-new">Plataforma LGA1700<br><span class="text-emerald-400/70 text-[0.72rem]">Ampliable hasta i9-12900K</span></div>
+                        </div>
                     </div>
                 </div>
 
